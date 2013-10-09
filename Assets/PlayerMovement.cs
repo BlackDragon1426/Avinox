@@ -22,5 +22,9 @@ public class PlayerMovement : MonoBehaviour
 			rigidbody.AddForce(Vector3.up * 5.0f,ForceMode.VelocityChange);	
 		}
 		
+		Vector3 movespeed;
+		
+//		Debug.Log(movespeed);
 	}
+	
 }

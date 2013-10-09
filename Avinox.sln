@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 
 Project("{9F34B1F4-6136-3400-5515-77D5F7A58F47}") = "Avinox", "Assembly-CSharp.csproj", "{B10F76C7-C685-9F95-6DD0-4B6900FB3038}"
 EndProject
+Project("{9F34B1F4-6136-3400-5515-77D5F7A58F47}") = "Avinox", "Assembly-UnityScript-firstpass.unityproj", "{BE19E4BD-5245-D8C1-A3DB-34B4DF5A20A8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -13,11 +15,15 @@ Global
 		{B10F76C7-C685-9F95-6DD0-4B6900FB3038}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B10F76C7-C685-9F95-6DD0-4B6900FB3038}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B10F76C7-C685-9F95-6DD0-4B6900FB3038}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BE19E4BD-5245-D8C1-A3DB-34B4DF5A20A8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BE19E4BD-5245-D8C1-A3DB-34B4DF5A20A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BE19E4BD-5245-D8C1-A3DB-34B4DF5A20A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BE19E4BD-5245-D8C1-A3DB-34B4DF5A20A8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
-					GlobalSection(MonoDevelopProperties) = preSolution
+									GlobalSection(MonoDevelopProperties) = preSolution
 		StartupItem = Assembly-CSharp.csproj
 		Policies = $0
 		$0.TextStylePolicy = $1
