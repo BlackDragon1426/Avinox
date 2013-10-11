@@ -13,7 +13,7 @@ public class PlayerMovement : MonoBehaviour
 	
 	public float currentSpeed;
 	
-	void FixedUpdate ()
+	void FixedUpdate()
 	{
 		float h = Input.GetAxis("Horizontal");
 		float v = Input.GetAxis("Vertical");
@@ -30,16 +30,47 @@ public class PlayerMovement : MonoBehaviour
 		Vector3 direction = new Vector3(h,0.0f,v);
 		transform.Translate(direction * currentSpeed * Time.deltaTime);
 		
-		if(Input.GetKeyDown(KeyCode.Space) && grounded == true)
+		if(Input.GetKeyDown(KeyCode.Space))
 		{
-			rigidbody.AddForce(Vector3.up * 5.0f,ForceMode.VelocityChange);	
+			GroundedCheck();
+			
+			if(grounded == true)
+			{
+				rigidbody.AddForce(Vector3.up * 5.0f,ForceMode.VelocityChange);	
+			}
+			else if(grounded == false)
+			{
+				Flight();
+			}
 		}
-		
-		
 	}
 	
 	void GroundedCheck()
 	{
+		RaycastHit hit;
+		Ray downRay = new Ray(transform.position, Vector3.down);
+		float distanceFromGround;
 		
+		if(Physics.Raycast(downRay, out hit))
+		{
+//			Physics.IgnoreCollision(hit.collider, collider);
+			
+			distanceFromGround = hit.distance;
+			
+			if(distanceFromGround < 1.05)
+			{
+				grounded = true;
+			}
+			else
+			{
+				grounded = false;
+			}
+			Debug.Log(hit.distance - 1);
+		}
+	}
+	
+	void Flight()
+	{
+		Debug.Log ("Flying");
 	}
 }
