@@ -10,6 +10,7 @@ public class PlayerMovement : MonoBehaviour
 	float flightSpeed;
 	
 	bool grounded = false;
+	public float distanceFromGround;
 	
 	public float currentSpeed;
 	
@@ -43,13 +44,16 @@ public class PlayerMovement : MonoBehaviour
 				Flight();
 			}
 		}
+		
+		 Vector3 down = transform.TransformDirection(Vector3.down * 2);
+		Debug.DrawRay (transform.position, down, Color.green);
 	}
 	
 	void GroundedCheck()
 	{
 		RaycastHit hit;
-		Ray downRay = new Ray(transform.position, Vector3.down);
-		float distanceFromGround;
+		Ray downRay = new Ray(transform.localPosition, Vector3.down);
+		
 		
 		if(Physics.Raycast(downRay, out hit))
 		{
