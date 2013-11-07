@@ -3,19 +3,29 @@ using System.Collections;
 
 public class Energy : MonoBehaviour
 {
-	float maxEnergy = 1000;
-	float minEnergy = 0;
+	float maxPower = 1000;
+	float minPower = 0;
 	
-	float energy;
+	public float rechargeRate = 100;
+	
+	public float power;
 
 	void Start()
 	{
-		energy = maxEnergy;
+		power = maxPower;
 	}
 	
 	void FixedUpdate()
 	{
-		
+		while(power >= 0 && power < 1001)
+		{
+			power += rechargeRate * Time.fixedDeltaTime;
+			
+//			if(power > 1000)
+//			{
+//				power = 1000;
+//			}
+		}
 	}
 }
 
