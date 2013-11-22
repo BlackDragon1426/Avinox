@@ -7,6 +7,9 @@ public class PlayerMovement : MonoBehaviour
 	float jogSpeed = 6;
 	float sprintSpeed = 10;
 	
+	bool sprinting = false;
+	bool jumping = false;
+	
 	float flightSpeed;
 	
 	bool grounded = false;
@@ -16,10 +19,21 @@ public class PlayerMovement : MonoBehaviour
 	
 	void FixedUpdate()
 	{
-		float h = Input.GetAxis("Horizontal");
-		float v = Input.GetAxis("Vertical");
+		float h = Input.GetAxis("MoveX");
+		float v = Input.GetAxis("MoveY");
 		
-		if(Input.GetKey(KeyCode.LeftShift))
+		float sprint = Input.GetAxis("Sprint");
+		
+		if(sprint == 1)
+		{
+			sprinting = true;
+		}
+		else
+		{
+			sprinting = false;
+		}
+		
+		if(sprinting == true)
 		{
 			currentSpeed = Mathf.Lerp(jogSpeed, sprintSpeed, Time.time / 2f);
 		}
@@ -31,7 +45,18 @@ public class PlayerMovement : MonoBehaviour
 		Vector3 direction = new Vector3(h,0.0f,v);
 		transform.Translate(direction * currentSpeed * Time.deltaTime);
 		
-		if(Input.GetKeyDown(KeyCode.Space))
+		float jump = Input.GetAxis("Jump");
+		
+		if(jump == 1)
+		{
+			jumping = true;
+		}
+		else
+		{
+			jumping = false;
+		}
+		
+		if(jumping == true)
 		{
 			GroundedCheck();
 			

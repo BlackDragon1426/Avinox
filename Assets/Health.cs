@@ -3,8 +3,8 @@ using System.Collections;
 
 public class Health : MonoBehaviour
 {
-	float minHealth = 0;
-	float maxHealth = 1000;
+	[Range(0f, 1000f)]
+	float health = 1000;
 	
 	
 	float headHealth = 1000;
