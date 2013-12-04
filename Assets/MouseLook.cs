@@ -17,14 +17,10 @@ using System.Collections;
 [AddComponentMenu("Camera-Control/Mouse Look")]
 public class MouseLook : MonoBehaviour {
 
-	public enum RotationAxes { MouseX = 1, MouseY = 2 }
-	public RotationAxes axes = RotationAxes.MouseX;
-	
-	[Range(2f, 8f)]
-	public float sensitivityX = 0f;
-	
-	[Range(2f, 8f)]
-	public float sensitivityY = 0f;
+	public enum RotationAxes { MouseXAndY = 0, MouseX = 1, MouseY = 2 }
+	public RotationAxes axes = RotationAxes.MouseXAndY;
+	public float sensitivityX = 15F;
+	public float sensitivityY = 15F;
 
 	public float minimumX = -360F;
 	public float maximumX = 360F;
@@ -36,13 +32,22 @@ public class MouseLook : MonoBehaviour {
 
 	void Update ()
 	{
-		if (axes == RotationAxes.MouseX)
+		if (axes == RotationAxes.MouseXAndY)
 		{
-			transform.Rotate(0, Input.GetAxis("LookX") * sensitivityX * Time.deltaTime * 50, 0);
+			float rotationX = transform.localEulerAngles.y + Input.GetAxis("LookX") * sensitivityX;
+			
+			rotationY += Input.GetAxis("LookY") * sensitivityY;
+			rotationY = Mathf.Clamp (rotationY, minimumY, maximumY);
+			
+			transform.localEulerAngles = new Vector3(-rotationY, rotationX, 0);
+		}
+		else if (axes == RotationAxes.MouseX)
+		{
+			transform.Rotate(0, Input.GetAxis("LookX") * sensitivityX, 0);
 		}
 		else
 		{
-			rotationY += Input.GetAxis("LookY") * sensitivityY * Time.deltaTime * 40;
+			rotationY += Input.GetAxis("LookY") * sensitivityY;
 			rotationY = Mathf.Clamp (rotationY, minimumY, maximumY);
 			
 			transform.localEulerAngles = new Vector3(-rotationY, transform.localEulerAngles.y, 0);
