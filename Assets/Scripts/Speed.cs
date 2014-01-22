@@ -13,7 +13,7 @@ public class Speed : MonoBehaviour
 	float SprintAccelMLimit = 2;
 	float SprintAccelLLimit = 1;
 
-	bool sprinting = false;
+	bool sprinting = true;
 	
 	public Energy energyTotal;
 	public Health healthTotal;
@@ -25,23 +25,29 @@ public class Speed : MonoBehaviour
 	}
 
 
-	public void FixedUpdate ()
+	public void Update ()
 	{
 		health = healthTotal.health / 1000;
 		energyBonus = energyTotal.power / 1000 * 3;
 
-		runningSpeed = inputSpeed * sprintingMult * health;
+		runningSpeed = inputSpeed * sprintingMult;
+		if(health > 0.5f)
+			runningSpeed *= health;
+		else
+			runningSpeed *= 0.5f;
 		runningSpeed += energyBonus;
 
-		if(Input.GetKey(KeyCode.LeftShift) && sprintingMult < SprintAccelMLimit)
+		if(Input.GetKey(KeyCode.LeftShift) && sprintingMult < SprintAccelMLimit || sprinting == true && sprintingMult < SprintAccelMLimit)
 		{
-			sprintingMult += 0.2f * Time.deltaTime;
+			sprintingMult += Time.deltaTime / 5;
 		}
 
 		else if (sprintingMult > SprintAccelLLimit)
 		{
-			sprintingMult -= 0.5f * Time.deltaTime;
+			sprintingMult -= Time.deltaTime / 2;
 		}
+
+
 
 		Debug.Log(runningSpeed);
 
