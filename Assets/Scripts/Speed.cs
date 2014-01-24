@@ -3,9 +3,9 @@ using System.Collections;
 
 public class Speed : MonoBehaviour
 {
-	float inputSpeed = 5;
+	public float inputSpeed = 5;
 
-	float runningSpeed;
+	public float runningSpeed;
 	float sprintingMult = 1;
 	float energyBonus;
 	float health;
@@ -13,7 +13,8 @@ public class Speed : MonoBehaviour
 	float SprintAccelMLimit = 2;
 	float SprintAccelLLimit = 1;
 
-	bool sprinting = true;
+	float SprintAccelTime = 5;
+	float SprintDecelTime = 2;
 	
 	public Energy energyTotal;
 	public Health healthTotal;
@@ -27,8 +28,8 @@ public class Speed : MonoBehaviour
 
 	public void Update ()
 	{
-		health = healthTotal.health / 1000;
-		energyBonus = energyTotal.power / 1000 * 3;
+//		health = healthTotal.health / 1000;
+//		energyBonus = energyTotal.power / 1000 * 3;
 
 		runningSpeed = inputSpeed * sprintingMult;
 		if(health > 0.5f)
@@ -37,21 +38,14 @@ public class Speed : MonoBehaviour
 			runningSpeed *= 0.5f;
 		runningSpeed += energyBonus;
 
-		if(Input.GetKey(KeyCode.LeftShift) && sprintingMult < SprintAccelMLimit || sprinting == true && sprintingMult < SprintAccelMLimit)
+		if(Input.GetAxis("Sprint") == 1 && sprintingMult < SprintAccelMLimit)
 		{
-			sprintingMult += Time.deltaTime / 5;
+			sprintingMult += Time.deltaTime / SprintAccelTime;
 		}
 
 		else if (sprintingMult > SprintAccelLLimit)
 		{
-			sprintingMult -= Time.deltaTime / 2;
+			sprintingMult -= Time.deltaTime / SprintDecelTime;
 		}
-
-
-
-		Debug.Log(runningSpeed);
-
 	}
-
-
 }

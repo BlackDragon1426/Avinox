@@ -46,12 +46,10 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Scripts\Direction.cs" />
      <Compile Include="Assets\Scripts\Energy.cs" />
      <Compile Include="Assets\Scripts\Health.cs" />
      <Compile Include="Assets\Scripts\MouseLook.cs" />
-     <Compile Include="Assets\Scripts\Old Scripts\MovementSpeedAndDirection.cs" />
-     <Compile Include="Assets\Scripts\Old Scripts\PlayerMovement.cs" />
-     <Compile Include="Assets\Scripts\Old Scripts\PlayerMovementOld.cs" />
      <Compile Include="Assets\Scripts\Speed.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
